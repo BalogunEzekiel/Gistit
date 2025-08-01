@@ -1,20 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 function App() {
   const [translatedText, setTranslatedText] = useState("");
+  const ws = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    const ws = new WebSocket(`${window.location.origin.replace(/^http/, "ws")}/ws`);
-    ws.onmessage = (event) => {
+    ws.current = new WebSocket(`${window.location.origin.replace(/^http/, "ws")}/ws`);
+
+    ws.current.onmessage = (event) => {
       const data = JSON.parse(event.data);
       setTranslatedText(data.translated);
     };
-    return () => ws.close();
+
+    return () => {
+      if (ws.current) {
+        ws.current.close();
+      }
+    };
   }, []);
 
   const sendAudio = () => {
     // Placeholder: In real app, send audio bytes
-    ws.send("Hello, how are you?");
+    if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+      ws.current.send("Hello, how are you?");
+    } else {
+      console.error("WebSocket is not open.");
+    }
   };
 
   return (
