@@ -1,0 +1,10 @@
+{
+  "builds": [
+    { "src": "backend/package.json", "use": "@railway/nodejs" },
+    { "src": "frontend/package.json", "use": "@railway/static" }
+  ],
+  "deployments": [
+    { "src": "backend", "use": "backend" },
+    { "src": "frontend/build", "use": "frontend" }
+  ]
+}
