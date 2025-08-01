@@ -1,8 +1,5 @@
 {
-  "build": {
-    "command": "npm install && npm run build"
-  },
-  "static": {
-    "buildPath": "dist"  // or "build" for CRA
-  }
+  "buildCommand": "npm run build",
+  "startCommand": "npx serve -s build",
+  "rootDirectory": "frontend"
 }
