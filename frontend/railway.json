@@ -1,9 +1,8 @@
 {
   "build": {
-    "env": "production",
-    "command": "npm run build"
+    "command": "npm install && npm run build"
   },
-  "start": {
-    "command": "serve -s build"
+  "static": {
+    "buildPath": "dist"  // or "build" for CRA
   }
 }
