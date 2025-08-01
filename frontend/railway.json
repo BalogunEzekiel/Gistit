@@ -1,5 +1,9 @@
-// frontend/railway.json
 {
-  "build": "npm install && npm run build",
-  "start": "npm run preview"
+  "build": {
+    "env": "production",
+    "command": "npm run build"
+  },
+  "start": {
+    "command": "serve -s build"
+  }
 }
