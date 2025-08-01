@@ -5,7 +5,7 @@ function App() {
   const ws = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    ws.current = new WebSocket(`${window.location.origin.replace(/^http/, "ws")}/ws`);
+    ws.current = new WebSocket(`wss://gistit-production.up.railway.app/ws`);
 
     ws.current.onmessage = (event) => {
       const data = JSON.parse(event.data);
