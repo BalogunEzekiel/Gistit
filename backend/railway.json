@@ -1,5 +1,5 @@
-// backend/railway.json
 {
-  "build": "npm install && tsc",
-  "start": "node dist/index.js"
+  "start": {
+    "command": "node index.js"
+  }
 }
