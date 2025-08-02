@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import logo from "./assets/gistit.png"; // Assuming you've placed the logo in src/assets
 
 function App() {
   const [translatedText, setTranslatedText] = useState("");
@@ -29,10 +30,27 @@ function App() {
   };
 
   return (
-    <div style={{ padding: 20, fontFamily: "Arial, sans-serif" }}>
-      <h1>Real-Time Speech Translator</h1>
-      <button onClick={sendAudio}>Send Audio (Placeholder)</button>
-      <p>Translated Text: {translatedText}</p>
+    <div style={{ padding: 20, fontFamily: "Arial, sans-serif", textAlign: "center" }}>
+      <img src={logo} alt="Gistit Logo" width="100" style={{ marginBottom: 20 }} />
+      <h1 style={{ color: "#1f2937" }}>Gistit - Real-Time Speech Translator</h1>
+      <button
+        onClick={sendAudio}
+        style={{
+          padding: "10px 20px",
+          fontSize: "16px",
+          backgroundColor: "#2563eb",
+          color: "#fff",
+          border: "none",
+          borderRadius: "8px",
+          cursor: "pointer",
+          marginTop: "10px"
+        }}
+      >
+        Send Audio (Placeholder)
+      </button>
+      <p style={{ fontSize: "18px", marginTop: "20px" }}>
+        <strong>Translated Text:</strong> {translatedText}
+      </p>
     </div>
   );
 }
