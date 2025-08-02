@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import logo from "./assets/gistit.png"; // Assuming you've placed the logo in src/assets
+import MicInput from './components/MicInput';
+
+<MicInput />
 
 function App() {
   const [translatedText, setTranslatedText] = useState("");
