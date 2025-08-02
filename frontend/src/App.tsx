@@ -1,15 +1,15 @@
+// frontend/src/App.tsx
 import React, { useEffect, useRef, useState } from "react";
-import logo from "./assets/gistit.png"; // Assuming you've placed the logo in src/assets
-import MicInput from './components/MicInput';
-
-<MicInput />
+import logo from "./assets/gistit.png"; // Ensure the logo is placed at src/assets/gistit.png
+import MicInput from "./components/MicInput"; // Step 2 - Import your MicInput component
 
 function App() {
   const [translatedText, setTranslatedText] = useState("");
   const ws = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    ws.current = new WebSocket(`wss://gistit-production.up.railway.app/ws`);
+    // Connect to the backend WebSocket
+    ws.current = new WebSocket("wss://gistit-production.up.railway.app/ws");
 
     ws.current.onmessage = (event) => {
       const data = JSON.parse(event.data);
@@ -17,6 +17,7 @@ function App() {
     };
 
     return () => {
+      // Cleanup WebSocket on component unmount
       if (ws.current) {
         ws.current.close();
       }
@@ -24,7 +25,7 @@ function App() {
   }, []);
 
   const sendAudio = () => {
-    // Placeholder: In real app, send audio bytes
+    // Placeholder: Replace this with actual audio byte stream in real app
     if (ws.current && ws.current.readyState === WebSocket.OPEN) {
       ws.current.send("Hello, how are you?");
     } else {
@@ -33,9 +34,21 @@ function App() {
   };
 
   return (
-    <div style={{ padding: 20, fontFamily: "Arial, sans-serif", textAlign: "center" }}>
+    <div
+      style={{
+        padding: 20,
+        fontFamily: "Arial, sans-serif",
+        textAlign: "center",
+        backgroundColor: "#f9fafb",
+        minHeight: "100vh",
+      }}
+    >
       <img src={logo} alt="Gistit Logo" width="100" style={{ marginBottom: 20 }} />
       <h1 style={{ color: "#1f2937" }}>Gistit - Real-Time Speech Translator</h1>
+
+      {/* Step 2 - MicInput component */}
+      <MicInput />
+
       <button
         onClick={sendAudio}
         style={{
@@ -46,12 +59,13 @@ function App() {
           border: "none",
           borderRadius: "8px",
           cursor: "pointer",
-          marginTop: "10px"
+          marginTop: "20px",
         }}
       >
         Send Audio (Placeholder)
       </button>
-      <p style={{ fontSize: "18px", marginTop: "20px" }}>
+
+      <p style={{ fontSize: "18px", marginTop: "30px", color: "#111827" }}>
         <strong>Translated Text:</strong> {translatedText}
       </p>
     </div>
